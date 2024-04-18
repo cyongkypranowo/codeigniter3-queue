@@ -2,14 +2,14 @@
 
 namespace Masrodjie\Queue\Libraries;
 
-use Illuminate\Queue\Worker;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Database\Capsule\Manager;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Queue\Capsule\Manager as QueueManager;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Container\Container;
+use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
 use Illuminate\Redis\RedisManager;
-use Illuminate\Database\Capsule\Manager;
 
 class Queue
 {
@@ -23,7 +23,7 @@ class Queue
             'queue.connections.redis' => [
                 'driver' => 'redis',
                 'connection' => 'default',
-                'queue' => 'default',
+                'queue' => getenv('REDIS_PREFIX') != '' ? getenv('REDIS_PREFIX')  : $_ENV['REDIS_PREFIX'],
                 'retry_after' => 30,
             ],
             'queue.default' => 'redis',

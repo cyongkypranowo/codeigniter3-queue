@@ -13,7 +13,7 @@ class Queue extends CI_Controller {
         $options = new Illuminate\Queue\WorkerOptions();
         $options->maxTries = 5;
         $options->timeOut = 300;
-        $worker->daemon('redis', 'default', $options);
+        $worker->daemon('redis', $_ENV['REDIS_PREFIX'], $options);
     }
     
 }

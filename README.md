@@ -21,6 +21,7 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 REDIS_SCHEME=tcp
 REDIS_DB=0
+REDIS_PREFIX=your_prefix 
 ```
 
 Update composer.json
